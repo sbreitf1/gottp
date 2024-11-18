@@ -9,6 +9,7 @@
 *.dylib
 cmd/gui/__debug_*
 qtbox
+build
 
 # Test binary, built with `go test -c`
 *.test

@@ -1,6 +1,7 @@
 package main
 
 import (
+	"github.com/sbreitf1/gottp/internal/gottp"
 	"github.com/therecipe/qt/widgets"
 )
 
@@ -11,17 +12,17 @@ type MainWindow struct {
 func NewMainWindow() *MainWindow {
 	window := widgets.NewQMainWindow(nil, 0)
 	window.SetWindowTitle("gottp")
-	window.SetMinimumSize2(400, 100)
+	window.SetMinimumSize2(400, 300)
 
-	scenarioWidget := widgets.NewQWidget(nil, 0)
-	scenarioLayout := widgets.NewQVBoxLayout()
-	scenarioWidget.SetLayout(scenarioLayout)
+	{
+		scenarioWidget := NewScenarioWidget(gottp.Scenario{
+			Name:   "Example",
+			Method: "GET",
+			URL:    "https://sbreitf1.de",
+		})
 
-	httpMethodList := widgets.NewQComboBox(nil)
-
-	scenarioLayout.AddWidget(httpMethodList, 0, 0)
-
-	window.SetCentralWidget(scenarioWidget)
+		window.SetCentralWidget(scenarioWidget.widget)
+	}
 
 	return &MainWindow{window: window}
 }
